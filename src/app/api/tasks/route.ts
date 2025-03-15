@@ -7,7 +7,7 @@ export async function GET() {
       "SELECT * FROM tasks ORDER BY created_at DESC"
     );
     return NextResponse.json(rows);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch tasks" },
       { status: 500 }
@@ -26,41 +26,7 @@ export async function POST(req: Request) {
       { message: "Task added successfully" },
       { status: 201 }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to add task" }, { status: 500 });
-  }
-}
-
-export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { status } = await req.json();
-    await pool.query("UPDATE tasks SET status = ? WHERE id = ?", [
-      status,
-      params.id,
-    ]);
-    return NextResponse.json({ message: "Task updated successfully" });
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to update task" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  try {
-    await pool.query("DELETE FROM tasks WHERE id = ?", [params.id]);
-    return NextResponse.json({ message: "Task deleted successfully" });
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to delete task" },
-      { status: 500 }
-    );
   }
 }
