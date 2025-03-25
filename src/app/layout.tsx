@@ -17,8 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Supa Chat",
-  description: "This is not messenger.",
+  title: "Simple Todo",
+  description:
+    "MySQL | Node.js | Express | Railway | Axios | Next.js | React.js | Typescript | Tanstack Query",
 };
 
 export default function RootLayout({
